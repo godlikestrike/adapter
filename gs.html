@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GodlikeStrike Adapter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            font-family: 'Great Vibes', cursive;
+            background-color: #000;
+        }
+
+        /* Background with overlay */
+        .bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: url('https://media1.tenor.com/m/wxVTTTLYEFsAAAAC/your-name-wallpaper.gif') center/cover;
+            filter: blur(10px) brightness(0.8);
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 1s ease 0.5s;
+        }
+
+        /* Sakura petals animation */
+        .petals {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 1s ease 1.5s;
+        }
+
+        .petal {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) scale(1);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(110vh) scale(0.3);
+                opacity: 0;
+            }
+        }
+
+        /* Title animation */
+        .title-container {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            display: flex;
+            align-items: baseline;
+            gap: 15px;
+            white-space: nowrap;
+        }
+
+        .main-title {
+            font-size: 5rem;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            transform: translateY(-50px);
+            animation: fadeInTitle 1.5s ease-out forwards;
+        }
+
+        .sub-title {
+            font-size: 3rem;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSub 1s ease-out 0.8s forwards;
+        }
+
+        @keyframes fadeInTitle {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInSub {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Buttons container */
+        .buttons {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 800px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            opacity: 0;
+            animation: fadeInUp 1s 1.5s forwards;
+        }
+
+        .btn {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .btn span {
+            position: relative;
+            z-index: 1;
+            font-size: 1.2rem;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .title-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
+            }
+            .main-title {
+                font-size: 3rem;
+            }
+            .sub-title {
+                font-size: 2rem;
+            }
+            .buttons {
+                grid-template-columns: 1fr;
+                top: 55%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg"></div>
+    <div class="bg-overlay"></div>
+    
+    <div class="petals">
+        <!-- Petals will be generated by JavaScript -->
+    </div>
+
+    <div class="title-container">
+        <span class="main-title">godlikestrike</span>
+        <span class="sub-title">adapter</span>
+    </div>
+
+    <div class="buttons">
+        <a href="https://t.me/+FR4dfQm7KPFlY2U1" class="btn"><span>Life 🌸</span></a>
+        <a href="https://t.me/+0s3iejyex6g5NjY6" class="btn"><span>Thoughts 🎴</span></a>
+        <a href="http://t.me/anonaskbot?start=thzy9xwnsa9ue" class="btn"><span>Anon Msg ✉️</span></a>
+        <a href="t.me/godlikestrike" class="btn"><span>Account 🎀</span></a>
+    </div>
+
+    <script>
+        // Show background after page load
+        window.addEventListener('load', function() {
+            document.querySelector('.bg').style.opacity = 1;
+            document.querySelector('.bg-overlay').style.opacity = 1;
+            document.querySelector('.petals').style.opacity = 1;
+        });
+
+        // Generate sakura petals
+        function createPetals() {
+            const petalsContainer = document.querySelector('.petals');
+            for (let i = 0; i < 25; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.left = Math.random() * 100 + '%';
+                const size = 5 + Math.random() * 15;
+                petal.style.width = size + 'px';
+                petal.style.height = size + 'px';
+                petal.style.animationDuration = 5 + Math.random() * 20 + 's';
+                petal.style.animationDelay = Math.random() * 5 + 's';
+                petalsContainer.appendChild(petal);
+            }
+        }
+        createPetals();
+    </script>
+</body>
+</html>
