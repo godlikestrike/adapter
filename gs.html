@@ -81,7 +81,7 @@
         /* Title animation */
         .title-container {
             position: absolute;
-            top: 40%;
+            top: 30%;
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
@@ -126,7 +126,7 @@
         /* Buttons container */
         .buttons {
             position: absolute;
-            top: 60%;
+            top: 65%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 80%;
@@ -174,19 +174,42 @@
         /* Responsive */
         @media (max-width: 768px) {
             .title-container {
+                top: 25%;
                 flex-direction: column;
                 align-items: center;
                 gap: 5px;
+                white-space: normal;
             }
             .main-title {
-                font-size: 3rem;
+                font-size: 3.5rem;
+                margin-bottom: 0;
             }
             .sub-title {
-                font-size: 2rem;
+                font-size: 2.2rem;
+                margin-top: 0;
             }
             .buttons {
+                top: 70%;
                 grid-template-columns: 1fr;
-                top: 55%;
+                gap: 15px;
+            }
+            .btn {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title-container {
+                top: 20%;
+            }
+            .main-title {
+                font-size: 2.8rem;
+            }
+            .sub-title {
+                font-size: 1.8rem;
+            }
+            .buttons {
+                top: 75%;
             }
         }
     </style>
